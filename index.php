@@ -9,19 +9,18 @@
 
 <?php get_header(); ?>
 
-<?php get_template_part( 'template-parts/content/top-news' ); ?>
-<?php get_template_part( 'template-parts/content/cat-news' ); ?>
-<?php get_template_part( 'template-parts/content/tab-news' ); ?>
-<?php get_template_part( 'template-parts/content/main-news' ); ?>
-
-
-
-<?php //if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
     <h1><?php //the_title(); ?></h1>
     <?php //the_content(); ?>
 
-<?php //endwhile;  endif;?>
+<?php endwhile;  endif;?>
+
+
+<?php get_template_part( 'template-parts/content/top-news' ); ?>
+<?php get_template_part( 'template-parts/content/cat-news' ); ?>
+<?php get_template_part( 'template-parts/content/tab-news' ); ?>
+<?php get_template_part( 'template-parts/content/main-news' ); ?>
 
 
 
