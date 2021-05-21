@@ -18,10 +18,8 @@ height="<?php //echo get_custom_header()->height; ?>" width="<?php //echo get_cu
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-4">
                 <div class="b-logo">
-                    <a href=" ">
+                    <a href="<?php echo home_url(); ?>">
                         <?php
-                        //$custom_logo_id = get_theme_mod( 'custom_logo' );
-                        //$custom_logo_url = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
                         echo '<img src="' . esc_url( wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' )) . '" alt="Logo">';
                         ?>
                     </a>

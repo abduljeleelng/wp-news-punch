@@ -38,14 +38,10 @@
 
                                 the_post_navigation();
 
-                                // If comments are open or we have at least one comment, load up the comment template.
                                 if ( comments_open() || get_comments_number() ) :
                                     comments_template();
                                 endif;
-
                                 ?>
-
-
                             </p>
                         </div>
                     </div>
@@ -158,17 +154,23 @@
                         <div class="sidebar-widget">
                             <h2 class="sw-title">News Category</h2>
                             <div class="category">
-                                <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                                <ul>
-                                    <li><a href="">National</a><span>(98)</span></li>
-                                    <li><a href="">International</a><span>(87)</span></li>
-                                    <li><a href="">Economics</a><span>(76)</span></li>
-                                    <li><a href="">Politics</a><span>(65)</span></li>
-                                    <li><a href="">Lifestyle</a><span>(54)</span></li>
-                                    <li><a href="">Technology</a><span>(43)</span></li>
-                                    <li><a href="">Trades</a><span>(32)</span></li>
-                                </ul>
-                                <?php endwhile;  endif;?>
+                                <?php
+                                $categories = get_the_category();
+                                if ( ! empty( $categories ) ) {
+                                    $categories = get_categories( array(
+                                        'orderby' => 'name',
+                                        'order'   => 'ASC'
+                                    ) );
+                                    foreach( $categories as $category ) {
+                                        $category_link = sprintf('<a href="%1$s" alt="%2$s">%3$s</a>',
+                                            esc_url( get_category_link( $category->term_id ) ),
+                                            esc_attr( sprintf( __( 'View all posts in %s', 'textdomain' ), $category->name ) ),
+                                            esc_html( $category->name )
+                                        );
+                                        echo "<ul><li>".sprintf( esc_html__( '', 'textdomain' ), $category_link )." <a href=''>$category_link </a> <span>($category->count)</span></li></ul>";
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
 
